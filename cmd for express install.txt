@@ -12,3 +12,8 @@ npm install express --save
 npm i ejs --save
 npm i body-parser --save
 npm i mysql --save
+
+
+npm i nodemon -g --save
+
+nodemon app
