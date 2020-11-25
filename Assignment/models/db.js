@@ -6,7 +6,7 @@ function getConnection(callback){
 	  host     : '127.0.0.1',
 	  user     : 'root',
 	  password : '',
-	  database : 'marketplace'
+	  database : 'car_rent'
 	});
 	 
 	connection.connect(function(err) {

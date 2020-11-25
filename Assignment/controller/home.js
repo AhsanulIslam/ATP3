@@ -1,7 +1,7 @@
 const express 	= require('express');
 const userModel = require.main.require('./models/userModel');
 const buyerModel	= require.main.require('./models/buyerModel');
-const freelancerModel	= require.main.require('./models/freelancerModel');
+// const freelancerModel	= require.main.require('./models/freelancerModel');
 const joblistModel		=require.main.require('./models/joblistModel');
 const router 	= express.Router();
 var pdf        = require('html-pdf');
@@ -11,16 +11,15 @@ var options    = {format:'A4'};
 
 router.get('/', (req, res)=>{
 	if(req.cookies['uname'] != null){
-		joblistModel.getcount(function(results){
-			console.log(results);
+		userModel.getcount(function(count){
+			console.log(count);
 			buyerModel.getcount(function(count){
 					//console.log(count);
-					freelancerModel.getcount(function(count2){
-						//console.log(count2);
-	
-						res.render('home/index', {userlist: results, bc: count,fc: count2 });
+						var name =req.cookies['uname'];
+						//console.log("namemmmmmm",name)
+						res.render('home/index', {ac: count, bc: count, name });
 					});		
-			});
+		
 			
 		});
 	}

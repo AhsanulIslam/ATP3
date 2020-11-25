@@ -222,7 +222,52 @@ body
 .btn{
 	font-family:consolas;
 }
+div.gallery {
+  border: 1px solid #ccc;
+}
 
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.responsive {
+  padding: 0 6px;
+  float: left;
+  width: 24.99999%;
+}
+
+@media only screen and (max-width: 700px) {
+  .responsive {
+    width: 49.99999%;
+    margin: 6px 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .responsive {
+    width: 100%;
+  }
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 </style>
 <!-- //////////////////////////////////// --> 
 
@@ -246,17 +291,17 @@ body
             </ul>
           </div>
     </li>
-	<li><a href="/adBuyerlist">Buyer</a>
+	<li><a href="/adBuyerlist">Members</a>
 	<div class="sub-menu-1">
   	<ul>
    
-		  <li><a href="/home/joblist">job lists</a></li>
+		  <li><a href="/home/joblist">Members List</a></li>
   
   	</ul>
     </div>
 
 </li>
-    <li><a href="/adFreelancerlist">Freelancer</a>
+    <li><a href="/adFreelancerlist">Rent</a>
 	<div class="sub-menu-1">
   	<ul>
    
