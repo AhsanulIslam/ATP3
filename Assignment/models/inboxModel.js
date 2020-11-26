@@ -3,8 +3,8 @@ const db = require('./db');
 module.exports ={
 
 	validate: function(user, callback){
-		var sql = "select * from chat where username=? and password=?";
-		db.getResults(sql, [user.username, user.password], function(results){
+		var sql = "select * from chat where username=? ";
+		db.getResults(sql, [user.username], function(results){
 			if(results.length > 0){
 				callback(true);
 			}else{
@@ -54,19 +54,13 @@ module.exports ={
 	insert: function(user, callback){
 
 
-		var sql = "insert into chat VALUES (?, ?, ?, ? , ?,?)";
+		var sql = "insert into chat VALUES (?, ?, ?, ? , ?, ?)";
 
 		db.execute(sql, ['', user.message, user.sysdate, user.you, user.admin,user.reply], function(status){
 			callback(status);
 		});
 	},
-	update: function(user,callback){
-        var sql = "UPDATE chat SET fname = ?, password =?, email= ?, phone= ?, address=? WHERE  username = ? ";
-
-		db.execute(sql, [ user.fname, user.password, user.email, user.phone, user.address, user.username], function(status){
-			callback(status);
-		});
-	},
+	
 	delete: function(user,callback){
         var sql = "DELETE FROM chat WHERE id_chat= ? ";
 

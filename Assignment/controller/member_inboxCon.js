@@ -1,8 +1,8 @@
 const express 	= require('express');
 //const userModel = require.main.require('./models/userModel');
 //const buyerModel	= require.main.require('./models/buyerModel');
-//const freelancerModel	= require.main.require('./models/freelancerModel');
-const inboxModel = require.main.require('./models/freelancer_inboxModel');
+//const memberModel	= require.main.require('./models/memberModel');
+const inboxModel = require.main.require('./models/member_inboxModel');
 const router 	= express.Router();
 
 router.get('/', (req, res)=>{
@@ -36,7 +36,7 @@ router.get('/reply/:name', (req, res)=>{
 
 	inboxModel.getbytwoUsername(req.cookies['uname'],req.params.name, function(results){
 	console.log("obj",results);	
-	res.render('home/freelancer_inboxInside', {userlist: results});	
+	res.render('home/member_inboxInside', {userlist: results});	
     
 	});
 	
@@ -64,7 +64,7 @@ router.post('/reply/:name', (req, res)=>{
 
 		inboxModel.getbytwoUsername(req.cookies['uname'],req.params.name, function(results){
 		console.log("objtttttt",results);	
-		res.render('home/freelancer_inboxInside', {userlist: results});	
+		res.render('home/member_inboxInside', {userlist: results});	
 		});
 	});
 	
@@ -79,7 +79,7 @@ router.post('/reply/:name', (req, res)=>{
 //     var user = {
 // 			id : req.params.id,
 // 			message: results[0].message,
-// 			username: results[0].username,  //fname, uname, pass, pass2, email, phone, address1, member(freelancer/buyer) 
+// 			username: results[0].username,  //fname, uname, pass, pass2, email, phone, address1, member(member/buyer) 
 // 			id_u: results[0].id,
 			
 // 			//member: result.member
@@ -94,7 +94,7 @@ router.post('/reply/:name', (req, res)=>{
 // 					res.render('home/inbox', {userlist: result});
 // 				});
         
-// 			//res.render('adFreelancerlist/adminFreelancerlist');// need to change the path
+// 			//res.render('admemberlist/adminmemberlist');// need to change the path
 // 		}else{
 // 			res.redirect('/home/inbox');
 // 		}
@@ -116,7 +116,7 @@ router.post('/reply/:name', (req, res)=>{
 	
 // 	var user = {
 //         fname: 	  req.body.fname,
-//         username: req.body.uname,  //fname, uname, pass, pass2, email, phone, address1, member(freelancer/buyer) 
+//         username: req.body.uname,  //fname, uname, pass, pass2, email, phone, address1, member(member/buyer) 
 //         password: req.body.pass,
 //         email:    req.body.email, 
 //         phone:    req.body.phone,

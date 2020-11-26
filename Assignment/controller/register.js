@@ -1,6 +1,6 @@
 const express 	= require('express');
-const buyerModel	= require.main.require('./models/buyerModel');
-const freelancerModel	= require.main.require('./models/freelancerModel');
+const memberModel	= require.main.require('./models/memberModel');
+//const freelancerModel	= require.main.require('./models/freelancerModel');
 const router 	= express.Router();
 const bodyParser 	= require('body-parser');
 const { body, validationResult } = require('express-validator');
@@ -36,32 +36,31 @@ else{var user = {
         email:    req.body.email, 
         phone:    req.body.phone,
         address:  req.body.address1, 
-        member: req.body.member
+       // member: req.body.member
          // need to check for radio button
 	};
-//need to get the member if member = buyer then sent to buyermodel else, freelancer model
+//need to get the member if member = buyer then sent to memberModel else, freelancer model
 console.log(user);
-if (user.member=="buyer" )
-{    
-buyerModel.insert(user, function(status){ //using usermodel to validate with the database
+  
+memberModel.insert(user, function(status){ //using usermodel to validate with the database
 		if(status){
 			//res.cookie('uname', req.body.username);
-            res.render('login/index');	 // check if i can send an alert or not for insertion done
+            res.redirect('/login/index');	 // check if i can send an alert or not for insertion done
 		}else{
 			res.redirect('/register/register');
 		}
 	});
-}
-if(user.member=="freelancer"){  
-    freelancerModel.insert(user, function(status){ //using usermodel to validate with the database
-		if(status){
-			//res.cookie('uname', req.body.username);
-            res.render('login/index');	 // check if i can send an alert or not
-		}else{
-			res.redirect('/register/register');
-		}
-    });
-}
+
+// if(user.member=="freelancer"){  
+//     freelancerModel.insert(user, function(status){ //using usermodel to validate with the database
+// 		if(status){
+// 			//res.cookie('uname', req.body.username);
+//             res.render('login/index');	 // check if i can send an alert or not
+// 		}else{
+// 			res.redirect('/register/register');
+// 		}
+//     });
+// }
 
 }
 });

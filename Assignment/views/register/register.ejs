@@ -101,13 +101,13 @@
                     </div> -->
                     
                   
-                    <div class="radio">
+                    <!-- <div class="radio">
                     
                         <label for "member" style="color:rgb(0, 0, 0)"><b>User Type: </b></label>
                         <input type="radio" name="member" value="Admin"> Admin 
                         <input type="radio" name="member" value="Member"> Member
                         <span style="color:red" id="err_member" name ="err_member"></span>
-                    </div>                 
+                    </div>                  -->
 
                     <!-- Express validation ******************************************************************************************************-->
 
@@ -139,7 +139,7 @@
                 var phone= document.getElementById("phone").value;
                 var email= document.getElementById("email").value;
                 var address1= document.getElementById("address1").value;
-                var member= document.getElementById("member").value;
+             //   var member= document.getElementById("member").value;
                 
                 var valid=true;
                 if (document.getElementById("fname").value=="")
@@ -167,7 +167,7 @@
                     valid=false;
                 }
             
-                 if (phone==""|| phone.length == 11 )
+                 if (phone==""|| phone.length != 11 )
                 {
                     document.getElementById("err_phone").innerHTML="Phone number Required";
                     valid=false;
@@ -183,11 +183,13 @@
                     document.getElementById("err_address").innerHTML="address Required";
                     valid=false;
                 }
-                if (member=="")
-			    {
-				document.getElementById("err_member").innerHTML="Member Required";
-				valid=false;
-			    }
+                // if (member=="")
+			    // {
+				// document.getElementById("err_member").innerHTML="Member Required";
+				// valid=false;
+                // }
+                if (valid)
+                {alert("congrats you are a member");}
             return valid;
     
             }

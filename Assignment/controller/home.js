@@ -1,8 +1,8 @@
 const express 	= require('express');
 const userModel = require.main.require('./models/userModel');
-const buyerModel	= require.main.require('./models/buyerModel');
+const memberModel	= require.main.require('./models/memberModel');
 // const freelancerModel	= require.main.require('./models/freelancerModel');
-const joblistModel		=require.main.require('./models/joblistModel');
+const carlistModel		=require.main.require('./models/carlistModel');
 const router 	= express.Router();
 var pdf        = require('html-pdf');
 var fs         = require('fs');
@@ -13,11 +13,11 @@ router.get('/', (req, res)=>{
 	if(req.cookies['uname'] != null){
 		userModel.getcount(function(count){
 			console.log(count);
-			buyerModel.getcount(function(count){
+			memberModel.getcount(function(count1){
 					//console.log(count);
 						var name =req.cookies['uname'];
 						//console.log("namemmmmmm",name)
-						res.render('home/index', {ac: count, bc: count, name });
+						res.render('home/index', {ac: count, bc: count1,name });
 					});		
 		
 			
@@ -42,7 +42,7 @@ router.get('/ajaxsearch/:id',(req,res)=>{
 	console.log('word value '+word);
 	if(word!=null || word!=undefined || txt!=null)
 	{
-		joblistModel.getsearch(word, function(results){
+		carlistModel.getsearch(word, function(results){
 
 			var str = "";
 			for(i=0;i<results.length;i++)
@@ -61,7 +61,7 @@ router.get('/ajaxsearch/:id',(req,res)=>{
 });
 // router.get('/search/:word',(req,res)=>{
    
-// 	joblistModel.getsearch(req.params.word, function(results){
+// 	carlistModel.getsearch(req.params.word, function(results){
 // 		if(results){
 
 //                 res.render('home/joblist_search', {userlist: results});
@@ -75,10 +75,10 @@ router.get('/ajaxsearch/:id',(req,res)=>{
 
 // });
 
-router.get('/joblist', (req, res)=>{
+router.get('/carlist', (req, res)=>{
 	
-	joblistModel.getAll(function(results){
-        //console.log(results);
+	carlistModel.getAll(function(results){
+        console.log(results);
 		res.render('home/joblist', {userlist: results});
 	});
 	//res.render('home/joblist');// remove it after you have done your work
@@ -88,26 +88,25 @@ router.get('/joblist', (req, res)=>{
 	
 });
 
-router.get('/joblist/delete/:id', (req, res)=>{
+router.get('/carlist/delete/:id', (req, res)=>{
 	// a_id = req.params.id;
 	// console.log(a_id);
-	joblistModel.getById(req.params.id, function(results){
+	carlistModel.getById(req.params.id, function(results){
     console.log("obj",results);		
     var user = {
-			id : req.params.id,
-			buyer_uname: results[0].buyer_uname,
-			buyer_email: results[0].buyer_email,  //user.buyer_uname, user.buyer_email, user.job_desc, user.job_date, user.salary, user.freelancer_uname 
-			job_desc: 	results[0].job_desc,
-			job_date:    results[0].job_date, 
-			salary:   	 results[0].salary,
-			freelancer_uname:  results[0].freelancer_uname
+			id : req.params.id, 
+			car_name: results[0].car_name,
+			company: 	results[0].company,	 //user.buyer_uname, user.buyer_email, user.job_desc, user.job_date, user.salary, user.freelancer_uname 
+			category:    results[0].category, 
+			rent_amount:   	 results[0].rent_amount,
+			user_image:  results[0].image
 			//member: result.member
 			 // need to check for radio button
             };
             console.log("user",user);	
-        joblistModel.delete(user, function(status){
+        carlistModel.delete(user, function(status){
 		if(status){
-            joblistModel.getAll(function(results){
+            carlistModel.getAll(function(results){
                 res.render('home/joblist', {userlist: results});
         });
 			//res.render('adFreelancerlist/adminFreelancerlist');// need to change the path
@@ -123,11 +122,11 @@ router.get('/joblist/delete/:id', (req, res)=>{
 })
 
 ////////////////////////freelancer work//////////////////////////////////////////////////////////
-router.get('/free_joblist', (req, res)=>{
+router.get('/mem_carlist', (req, res)=>{
 	
-	joblistModel.getAll(function(results){
+	carlistModel.getAll(function(results){
         //console.log(results);
-		res.render('home/free_joblist', {userlist: results});
+		res.render('home/mem_carlist', {userlist: results});
 	});
 	//res.render('home/joblist');// remove it after you have done your work
 	// chatModel.getByname(req.cookies['uname'],function(results){
@@ -139,7 +138,7 @@ router.get('/free_joblist', (req, res)=>{
 router.get('/joblist/apply/:id', (req, res)=>{
 	// a_id = req.params.id;
 	// console.log(a_id);
-	joblistModel.getById(req.params.id, function(results){
+	carlistModel.getById(req.params.id, function(results){
     console.log("obj",results);		
     var user = {
 			id : req.params.id,
@@ -153,9 +152,9 @@ router.get('/joblist/apply/:id', (req, res)=>{
 			 // need to check for radio button
             };
             console.log("user",user);	
-    //     joblistModel.delete(user, function(status){
+    //     carlistModel.delete(user, function(status){
 	// 	if(status){
-    //         joblistModel.getAll(function(results){
+    //         carlistModel.getAll(function(results){
     //             res.render('home/joblist', {userlist: results});
     //     });
 	// 		//res.render('adFreelancerlist/adminFreelancerlist');// need to change the path

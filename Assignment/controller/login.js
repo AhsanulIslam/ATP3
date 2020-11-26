@@ -1,7 +1,7 @@
 const express 		= require('express');
 const userModel		= require.main.require('./models/userModel');
-const buyerModel	= require.main.require('./models/buyerModel');
-const freelancerModel = require.main.require('./models/freelancerModel');
+const memberModel	= require.main.require('./models/memberModel');
+//const freelancerModel = require.main.require('./models/freelancerModel');
 const router 		= express.Router();
 
 router.get('/', (req, res)=>{
@@ -20,22 +20,22 @@ console.log(user);
 			res.cookie('uname', req.body.username);
 			res.redirect('/home');	
 		}else{
-			buyerModel.validate(user, function(status){ //need to make and work on buyerModel
+			memberModel.validate(user, function(status){ //need to make and work on memberModel
 				if(status){
 					res.cookie('uname', req.body.username);
-					res.redirect('/');	//send to buyer home.ejs
-				}else
-					{
-					freelancerModel.validate(user, function(status){ //need to make and work on freelancer model
-						if(status){
-							res.cookie('uname', req.body.username);
-							res.redirect('/freelancer');	// send to freelancer home.ejs
-						}else{
-							res.redirect('/login');
-						}
-					});
-					
+					res.redirect('/member');	//send to buyer home.ejs
 				}
+				// 	else {
+				// 	freelancerModel.validate(user, function(status){ //need to make and work on freelancer model
+				// 		if(status){
+				// 			res.cookie('uname', req.body.username);
+				// 			res.redirect('/freelancer');	// send to freelancer home.ejs
+				// 		}else{
+				// 			res.redirect('/login');
+				// 		}
+				// 	});
+					
+				// }
 			});
 			// res.redirect('/login');
 		}

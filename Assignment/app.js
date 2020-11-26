@@ -10,13 +10,13 @@ const home			= require('./controller/home');
 const logout		= require('./controller/logout');
 const user			= require('./controller/user');
 const reg			= require('./controller/register');// added the controller to the register 
-const adbuyer		= require('./controller/adBuyerlist');
-const admfree        = require('./controller/adFreelancerlistCon');
+//const adbuyer		= require('./controller/adBuyerlist');
+const admember       = require('./controller/ad_member_listCon');
 const inbox        = require('./controller/inboxCon');
-const freelancer_inbox        = require('./controller/Freelancer_inboxCon');
+const member_inbox        = require('./controller/member_inboxCon');
 //const job			= require('./controller/joblistCon');
-//freelancer
-const fhome			= require('./controller/free_homeCon');
+//member
+const fhome			= require('./controller/member_homeCon');
 const app 			= express();
 // pdf work
 var pdf        = require('html-pdf');
@@ -39,14 +39,14 @@ app.use('/home', home);
 app.use('/logout', logout);
 app.use('/user', user);
 app.use('/register', reg); // added the path to the register
-app.use('/adBuyerlist', adbuyer);
-app.use('/adFreelancerlist', admfree);
+//app.use('/adBuyerlist', adbuyer);
+app.use('/admemberlist', admember);
 //app.use('/', job);
 app.use('/inbox',inbox);
-app.use('/freelancer_inbox',freelancer_inbox);
+app.use('/member_inbox',member_inbox);
 
 //freelancer
-app.use('/freelancer',fhome);
+app.use('/member',fhome);
 
 
 // app.use('/adBuyerlist', adbuyer);

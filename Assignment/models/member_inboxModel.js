@@ -60,13 +60,7 @@ module.exports ={
 			callback(status);
 		});
 	},
-	update: function(user,callback){
-        var sql = "UPDATE chat SET fname = ?, password =?, email= ?, phone= ?, address=? WHERE  username = ? ";
-
-		db.execute(sql, [ user.fname, user.password, user.email, user.phone, user.address, user.username], function(status){
-			callback(status);
-		});
-	},
+	
 	delete: function(user,callback){
         var sql = "DELETE FROM chat WHERE id_chat= ? ";
 

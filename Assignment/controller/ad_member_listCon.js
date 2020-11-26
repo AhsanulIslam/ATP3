@@ -1,12 +1,12 @@
 const express 	= require('express');
-const freelancerModel	= require.main.require('./models/freelancerModel');
+const memberModel	= require.main.require('./models/memberModel');
 const router 	= express.Router();
 
 router.get('/', (req, res)=>{
 	
     
     // res.render('/admin_buyerlist');// remove it after you have done your work
-    freelancerModel.getAll(function(results){
+    memberModel.getAll(function(results){
         //console.log(results);
 		res.render('adFreelancerlist/adminFreelancerlist', {userlist: results});
 	});
@@ -21,7 +21,7 @@ router.get('/', (req, res)=>{
 router.get('/delete/:id', (req, res)=>{
 	// a_id = req.params.id;
 	// console.log(a_id);
-	freelancerModel.getById(req.params.id, function(results){
+	memberModel.getById(req.params.id, function(results){
     console.log("obj",results);		
     var user = {
 			id : req.params.id,
@@ -35,9 +35,9 @@ router.get('/delete/:id', (req, res)=>{
 			 // need to check for radio button
             };
             console.log("user",user);	
-        freelancerModel.delete(user, function(status){
+        memberModel.delete(user, function(status){
 		if(status){
-            freelancerModel.getAll(function(results){
+            memberModel.getAll(function(results){
                 res.render('adFreelancerlist/adminFreelancerlist', {userlist: results});
         });
 			//res.render('adFreelancerlist/adminFreelancerlist');// need to change the path
@@ -62,7 +62,7 @@ router.get('/delete/:id', (req, res)=>{
 //         member: req.body.member
 //          // need to check for radio button
 // 	};
-// 	freelancerModel.delete(user, function(status){
+// 	memberModel.delete(user, function(status){
 // 		if(status){
 // 			res.redirect('/adBuyerlist/admin_buyerlist');// need to change the path
 // 		}else{

@@ -1,29 +1,40 @@
 const express 	= require('express');
 const userModel = require.main.require('./models/userModel');
-const buyerModel	= require.main.require('./models/buyerModel');
-const freelancerModel	= require.main.require('./models/freelancerModel');
+//const buyerModel	= require.main.require('./models/buyerModel');
+const carlistModel		=require.main.require('./models/carlistModel');
+const memberModel	= require.main.require('./models/memberModel');
 const router 	= express.Router();
 
 router.get('/', (req, res)=>{
 	
-	freelancerModel.getByname(req.cookies['uname'],function(results){
+	// memberModel.getByname(req.cookies['uname'],function(results){
 		//need to add jobs the uname has taken
 		
 		if(req.cookies['uname'] != null){
-				res.render('home/free_home');
-			}else{
+			carlistModel.getAll(function(results){	
+			
+				res.render('home/free_home',{userlist: results});
+			});
+		}
+			else{
 				res.redirect('/login');
 			}
+	
+			
+// need to work on car list
+
+
+
 		//res.render('home/free_home');
 	
 
-	});
+	//});
 });
 
 router.get('/info', (req, res)=>{
 	
 	//res.render('home/index');// remove it after you have done your work
-	freelancerModel.getByname(req.cookies['uname'],function(results){
+	memberModel.getByname(req.cookies['uname'],function(results){
 		res.render('home/freelancer_info', {userlist: results});
 	});
 
@@ -43,9 +54,9 @@ router.post('/info', (req, res)=>{
 	console.log(user);
 	//res.render('home/index');// remove it after you have done your work
 	
-	freelancerModel.update(user,function(status){
+	memberModel.update(user,function(status){
 		if(status){
-			freelancerModel.getByname(user.username,function(results){
+			memberModel.getByname(user.username,function(results){
 				res.render('home/freelancer_info', {userlist: results});
 			});
 			//sres.render('home/freelancer_info');// need to change the path

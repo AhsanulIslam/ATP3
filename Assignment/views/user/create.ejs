@@ -73,8 +73,8 @@
 			<div class="form-group">
 				<h4 class="text">member:</h4> 
 				<!-- <label for "member" style="color:white"><b>Member type: </b></label> -->
-				<input type="radio" name="member" id="member" value="freelancer" >Freelancer 
-				<input type="radio" name="member" id="member" value="buyer">Buyer 
+				 
+				<input type="radio" name="member" id="member" value="member">Member
 				<input type="radio" name="member" id="member" value="admin">Admin
 				<span style="color:red" id="err_member" name ="err_member"></span>
 			
@@ -148,6 +148,8 @@
 				document.getElementById("err_member").innerHTML="Member Required";
 				valid=false;
 			}
+			if (valid)
+			{alert("insertion done");}
 		return valid;
 
 		}

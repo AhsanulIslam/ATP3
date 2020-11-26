@@ -1,7 +1,7 @@
 const express = require('express');
 const userModel	= require.main.require('./models/userModel');
-const buyerModel	= require.main.require('./models/buyerModel');
-const freelancerModel	= require.main.require('./models/freelancerModel');
+//const buyerModel	= require.main.require('./models/buyerModel');
+const memberModel	= require.main.require('./models/memberModel');
 const router = express.Router();
 
 router.get('/create', (req, res)=>{
@@ -22,28 +22,14 @@ router.post('/create', (req, res)=>{
 	};
 //need to get the member if member = buyer then sent to buyermodel else, freelancer model
 console.log(user);
-if (user.member=="buyer" )
-{    
-buyerModel.insert(user, function(status){ //using usermodel to validate with the database
-	console.log("inside the if for buyer"); 
-	if(status){
-			console.log("inside the insert for buyer"); 
-			//res.cookie('uname', req.body.username);
-			buyerModel.getAll(function(results){
-			res.render('adBuyerlist/adminBuyerlist',{userlist: results});//need to change	 // check if i can send an alert or not for insertion done
-			});
-		}else{
-			res.redirect('/user/create');
-		}
-	});
-}
-else if(user.member=="freelancer"){  
-    freelancerModel.insert(user, function(status){ //using usermodel to validate with the database
-		console.log("inside the if for freelancer"); 
+
+ if(user.member=="member"){  
+    memberModel.insert(user, function(status){ //using usermodel to validate with the database
+		console.log("inside the if for member"); 
 		if(status){
-			console.log("inside the inser for freelancer"); 
+			console.log("inside the inser for member"); 
 			//res.cookie('uname', req.body.username);
-			freelancerModel.getAll(function(results){
+			memberModel.getAll(function(results){
 			res.render('adFreelancerlist/adminFreelancerlist',{userlist: results});
 			});//need to change	 // check if i can send an alert or not
 		}else{
