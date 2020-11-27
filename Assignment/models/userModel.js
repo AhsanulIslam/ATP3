@@ -56,6 +56,7 @@ module.exports ={
 
 		db.execute(sql, [user.username], function(status){
 			callback(status);
+        
 	    });
     }
 }

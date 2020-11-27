@@ -47,15 +47,17 @@ module.exports ={
 			callback(results);
 		});
 	},
+	insert: function(user, callback){
+		var sql = "insert into car_list VALUES (?, ?, ?, ?, ?, ?)";
 
-
-
-
-
+		db.execute(sql, ['', user.car_name, user.company, user.category, user.rent_amount, user.image], function(status){
+			callback(status);
+		});
+	},
 	update: function(user,callback){
-        var sql = "UPDATE car_list SET company = ?, category_id =?, rent_amount= ?, image= ? WHERE  car_name = ? ";
+        var sql = "UPDATE car_list SET  car_name = ?, company = ?, category_id =?, rent_amount= ?, image= ? WHERE id = ? ";
 
-		db.execute(sql, ['', user.company, user.category, user.rent_amount, '',user.car_name], function(status){
+		db.execute(sql, [ user.car_name, user.company, user.category, user.rent_amount, user.image, user.id], function(status){
 			callback(status);
 		});
 	},
