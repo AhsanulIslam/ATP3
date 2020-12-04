@@ -1,0 +1,19 @@
+npm install express
+npm i ejs
+npm i body-parser
+
+
+---------------
+npm init
+|
+|
+|
+npm install express --save
+npm i ejs --save
+npm i body-parser --save
+npm i mysql --save
+Run `npm audit` for details----npm install npm@latest -g
+npm i express-fileupload --save
+npm i nodemon -g --save
+
+nodemon app
