@@ -44,10 +44,8 @@
 						<td><%= userlist[i].company %></td>
 						<td><%= userlist[i].category_id %></td>
 						<td><%= userlist[i].rent_amount %></td>
-						<!-- <td><%= userlist[i].image %></td> -->
-						<td><img alt="Car Pic" src="http://localhost:3000/image/<%= userlist[i].image %>" class="img-circle img-responsive"></td>
+						<td><%= userlist[i].image %></td>
 						<!-- <td><%= userlist[i].freelancer_uname %></td> -->
-			
 						 <td><a href="/home/carlist/edit/<%=userlist[i].id%>"class="btn btn-success">Edit</a></td>   
 						<td><a href="/home/carlist/delete/<%=userlist[i].id%>" class="btn btn-danger">Delete</a></td>  
 						

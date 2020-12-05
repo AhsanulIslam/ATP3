@@ -22,11 +22,7 @@ const app 			= express();
 var pdf        = require('html-pdf');
 var fs         = require('fs');
 var options    = {format:'A4'};
-//image
-const fileUpload = require('express-fileupload');
 
-// default options
-app.use(fileUpload());
 //config
 app.set('view engine', 'ejs');
 

@@ -50,7 +50,7 @@ module.exports ={
 	insert: function(user, callback){
 		var sql = "insert into car_list VALUES (?, ?, ?, ?, ?, ?)";
 
-		db.execute(sql, ['', user.car_name, user.company, user.rent_amount, user.image, user.category], function(status){
+		db.execute(sql, ['', user.car_name, user.company, user.category, user.rent_amount, user.image], function(status){
 			callback(status);
 		});
 	},

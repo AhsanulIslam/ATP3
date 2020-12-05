@@ -163,7 +163,6 @@ router.post('/carlist/edit/:id', (req, res)=>{
 router.get('/addcar', (req, res)=>{
    categoryModel.getAll(function(results){
 	//alert("user info updated");
-	// console.log("-----------",results[0].image)
 	res.render('home/add_car', {userlist: results});
 	});
 	//res.render('home/add_car');
@@ -172,9 +171,6 @@ router.get('/addcar', (req, res)=>{
 
 router.post('/addcar', (req, res)=>{
 	
-	// var file = req.files.image;
-	// var img_name = file.name;
-
 	var user = {
 
 		//id : req.params.id, 
