@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
+//get static function  , in the get perameter we can put string or array or function
+Route::get('/', function () {   
     return view('welcome');
 });
 
