@@ -18,5 +18,10 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function(){
-	echo "/test work....";
+	echo "Hello Laravel....";
 });
+
+Route::get('/login', 'loginController@index');
+Route::post('/login', 'loginController@verify');
+
+Route::get('/home', 'homeController@index');
