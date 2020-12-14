@@ -27,7 +27,7 @@
 			</tr>
 		</table>
 		</fieldset>
-		<!-- <div style="color: red">{{session('msg')}} </div> -->
+		<div style="color: red">{{session('msg')}} </div>
 	</form>
 </body>
 </html>

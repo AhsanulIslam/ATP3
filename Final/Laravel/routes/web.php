@@ -25,3 +25,11 @@ Route::get('/login', 'loginController@index');
 Route::post('/login', 'loginController@verify');
 
 Route::get('/home', 'homeController@index');
+Route::get('/logout', 'logoutController@index');
+
+
+Route::get('/stdlist', 'homeController@stdlist');
+Route::get('/create', 'homeController@create');
+
+
+Route::get('/user/{id}',  'homeController@userid');

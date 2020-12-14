@@ -12,10 +12,15 @@ class loginController extends Controller
     }
 
     public function verify(Request $req){
-    	echo $_POST['username'];
-    	echo $_POST['password'];
+    	// echo $_POST['username'];
+    	// echo $_POST['password'];
     	// $req ->username;
     	// $req ->password;
-    	//return redirect('/home');
+    	if ($req->username == "imon" && $req->password == 123){
+    	return redirect('/home');
+    	}
+    	else{
+    		return redirect('/login');
+    	}
     }
 }
