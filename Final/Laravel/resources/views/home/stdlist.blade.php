@@ -1,40 +1,39 @@
+<!DOCTYPE html>
 <html>
 <head>
-	<title>Home</title>
+	<title>Student List</title>
 </head>
 <body>
-	<h1>Student List!</h1>
-	
+	<a href="/home">Back</a> |
+	<a href="/logout">logout</a>
 	<br>
 
-
-
-	<a href="/home">Back</a> |
-
-	<a href="/logout"> logout</a>|
-
-<br>
-<br>
-<table>
-	<tr>
-		<td>ID</td>
-		<td>Name</td>
-		<td>Cgpa</td>
-		<td>Email</td>
-	</tr>
-		@for($i=0; $i< count($student); $i++)
+	<table border="1">
 		<tr>
-			<td>{{$student[$i]['id']}}</td>
-			<td>{{$student[$i]['name']}}</td>
-			<td>{{$student[$i]['cgpa']}}</td>
-			<td>{{$student[$i]['email']}}</td>
-		</tr>	
+			<td>Id</td>
+			<td>Username</td>
+			<td>Name</td>
+			<td>Dept</td>
+			<td>Action</td>
+		</tr>
+
+		@for($i=0; $i < count($students); $i++)
+
+			<tr>
+				<td>{{$students[$i]['userId']}}</td>
+				<td>{{$students[$i]['username']}}</td>
+				<td>{{$students[$i]['name']}}</td>
+				<td>{{$students[$i]['dept']}}</td>
+				<td>
+					<a href="{{route('home.edit', $students[$i]['userId'])}}">Edit </a> |
+					<a href="{{route('home.show', $students[$i]['userId'])}}">Details </a> |
+					<a href="/delete/{{$students[$i]['userId']}}">Delete </a> 
+				</td>
+			</tr>
+
 		@endfor
 
-	
-</table>
-<br>
-	
 
+	</table>
 </body>
 </html>

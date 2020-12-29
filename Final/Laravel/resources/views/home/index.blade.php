@@ -1,19 +1,11 @@
-<html>
-<head>
-	<title>Home</title>
-</head>
-<body>
-	<h1>Welcome home!</h1>
-	
-	<br>
-	<a href="/create">create student list</a> |
-	<a href="/stdlist">View student list</a> |
-	<a href="/logout"> logout</a>|
+@extends('layout/navbar')
 
-	<br>
-	<br>
-	<br>
-	
 
-</body>
-</html>
+@section('title')
+Home Page
+@endsection
+
+
+@section('head')
+Welcome home! {{$username}}
+@endsection
