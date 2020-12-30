@@ -6,7 +6,7 @@
 <body>
 
 	<form method="post">
-		<!-- @csrf -->
+		@csrf
 		<!-- {{csrf_field()}} -->
 		
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
