@@ -51,6 +51,41 @@ app.use('/freelancer',fhome);
 
 // app.use('/adBuyerlist', adbuyer);
 //route
+
+var fs = require('fs');
+var data =  fs.readFileSync('test.json');
+var words = JSON.parse(data);
+
+console.log(words);
+
+
+app.get('/add/:word/:score?',addword);
+
+function  addword(request, response) {
+	var data =  request.param;
+	var word = data.word;
+	var score = Number(data.score);
+	var reply;
+	if(!score){
+		reply ={
+			msg: "score is required."
+		}
+	}else{
+		words[word] = score;
+		var data = JSON.stringify(words, null, 2);
+		fs.writeFile('test.json',data,finished);
+
+		function finished(err){
+			console.log('all set');
+		}
+		reply = {
+			msg: "thanks "
+		}
+	}
+response.send(reply);
+}
+
+
 app.get('/', (req, res)=>{
 	res.send('Hello from express server');	
 });

@@ -80,6 +80,15 @@ router.get('/joblist', (req, res)=>{
 	
 	joblistModel.getAll(function(results){
         //console.log(results);
+       
+	var data = JSON.stringify(results, null, 2);
+		fs.writeFile('test.json',data,finished);
+			function finished(err){
+				console.log('all set');
+			}
+			reply = {
+				msg: "thanks "
+			}
 		res.render('home/joblist', {userlist: results});
 	});
 	//res.render('home/joblist');// remove it after you have done your work

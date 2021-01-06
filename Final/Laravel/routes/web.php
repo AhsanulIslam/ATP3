@@ -1,5 +1,6 @@
 <?php
-
+// use Illuminate\Support\Facades\Http;
+// use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,12 +11,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::get(uri: '/', function(){
+// 	return view(view: 'welcome');
+// });
+
 
 Route::get('/', function(){
 	echo "index page";
 });
 
 
+// $req = Http::get(url, 'https://jsonplaceholder.typicode.com/todos');
+// dd($req);
 Route::get('/login', 'loginController@index');
 Route::post('/login', 'loginController@verify');
 Route::get('/logout', 'logoutController@index');
